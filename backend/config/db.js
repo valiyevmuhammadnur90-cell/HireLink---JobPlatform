@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const connectDB = async () => {
+const connectDB = async (uri) => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB ulandi: ${conn.connection.host}`);
+    await mongoose.connect(uri);
+    console.log("DB connected successfully");
   } catch (error) {
-    console.error(`MongoDB ulanish xatosi: ${error.message}`);
-    process.exit(1);
+    console.log("Error connecting with DB: ", error);
   }
 };
 
