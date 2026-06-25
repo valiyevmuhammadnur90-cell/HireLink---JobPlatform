@@ -1,3 +1,7 @@
+const { setServers } = require("node:dns").promises;
+
+setServers(["1.1.1.1", "8.8.8.8"]);
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -18,7 +22,7 @@ connectDB(DB_URI);
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL || "*", credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -40,5 +44,5 @@ app.get("/api/health", (req, res) =>
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server ${PORT}-portda ishga tushdi`));
