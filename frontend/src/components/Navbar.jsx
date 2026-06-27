@@ -51,7 +51,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link
-          to="/"
+          to="/home"
           style={{
             textDecoration: "none",
             fontFamily: '"Space Grotesk",sans-serif',
@@ -60,7 +60,7 @@ export default function Navbar() {
             color: "#15191E",
           }}
         >
-          Topish<span style={{ color: "#E0622B" }}>Job</span>
+          Hire<span style={{ color: "#E0622B" }}>Link</span>
         </Link>
 
         {/* Nav links */}
