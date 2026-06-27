@@ -232,7 +232,9 @@ export default function JobDetails() {
                     border: "1px solid rgba(255,255,255,0.15)",
                   }}
                 >
-                  🏢
+                  {["🏢", "🏬", "🏨", "🏪", "🏪"].at(
+                    Math.floor(Math.random() * 5),
+                  )}
                 </div>
                 <div>
                   <h1
@@ -519,7 +521,7 @@ export default function JobDetails() {
               </h3>
 
               {job.contactPhone ? (
-                <a
+                <a  
                   href={`tel:${job.contactPhone}`}
                   style={{
                     display: "flex",

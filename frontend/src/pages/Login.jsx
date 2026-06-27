@@ -15,7 +15,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(form.email, form.password);
-      navigate("/my-listings");
+      navigate("/home");
     } catch (err) {
       setError(
         err.response?.data?.message || "Tizimga kirishda xatolik yuz berdi",
@@ -53,13 +53,15 @@ export default function Login() {
         </div>
         <div>
           <label className="label">Parol</label>
-          <input
-            type="password"
-            required
-            className="input"
-            value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
+          <div className="flex">
+            <input
+              type="password"
+              required
+              className="input"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+          </div>
         </div>
 
         <button type="submit" disabled={loading} className="btn-primary w-full">
