@@ -16,7 +16,7 @@ export default function JobCard({ job }) {
 
   return (
     <Link
-      to={`/jobs/${job._id}`}
+      to={job?._id ? `/jobs/${job._id}` : "/jobs"}
       className="card block p-5 hover:border-primary transition-colors group"
     >
       <div className="flex items-start justify-between gap-3">

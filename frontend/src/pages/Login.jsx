@@ -15,7 +15,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(form.email, form.password);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setError(
         err.response?.data?.message || "Tizimga kirishda xatolik yuz berdi",
