@@ -246,7 +246,7 @@ export default function JobDetails() {
                       margin: 0,
                     }}
                   >
-                    {job.title}
+                    <span>{job.title}</span>
                   </h1>
                   <p
                     style={{
@@ -255,7 +255,7 @@ export default function JobDetails() {
                       fontSize: 15,
                     }}
                   >
-                    {job.company} · {job.location}
+                    <span>{job.company}</span> · <span>{job.location}</span>
                   </p>
                 </div>
               </div>
@@ -285,7 +285,7 @@ export default function JobDetails() {
                       fontWeight: 500,
                     }}
                   >
-                    {tag}
+                    <span>{tag}</span>
                   </span>
                 ))}
               </div>
@@ -333,7 +333,7 @@ export default function JobDetails() {
           >
             <span style={{ color: "#f5a06e", fontSize: 16 }}>💰</span>
             <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>
-              {salary}
+              <span>{salary}</span>
             </span>
           </div>
         </div>
@@ -395,7 +395,7 @@ export default function JobDetails() {
                   margin: 0,
                 }}
               >
-                {job.description}
+                <span>{job.description}</span>
               </p>
             </div>
 
@@ -433,7 +433,7 @@ export default function JobDetails() {
                         fontWeight: 500,
                       }}
                     >
-                      {s}
+                      <span>{s}</span>
                     </span>
                   ))}
                 </div>
@@ -482,7 +482,7 @@ export default function JobDetails() {
                       >
                         →
                       </span>
-                      {r}
+                      <span>{r}</span>
                     </li>
                   ))}
                 </ul>
@@ -521,7 +521,7 @@ export default function JobDetails() {
               </h3>
 
               {job.contactPhone ? (
-                <a  
+                <a
                   href={`tel:${job.contactPhone}`}
                   style={{
                     display: "flex",
@@ -576,7 +576,7 @@ export default function JobDetails() {
                         margin: "2px 0 0",
                       }}
                     >
-                      {job.contactPhone}
+                      <span>{job.contactPhone}</span>
                     </p>
                   </div>
                 </a>
@@ -640,7 +640,7 @@ export default function JobDetails() {
                         margin: "2px 0 0",
                       }}
                     >
-                      {job.contactEmail}
+                      <span>{job.contactEmail}</span>
                     </p>
                   </div>
                 </a>
@@ -669,7 +669,7 @@ export default function JobDetails() {
                     color: status.type === "success" ? "#0E5C4F" : "#C04F1F",
                   }}
                 >
-                  {status.message}
+                  <span>{status.message}</span>
                 </div>
               )}
 
