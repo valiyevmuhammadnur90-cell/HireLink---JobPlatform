@@ -1,4 +1,4 @@
-# Job Finder — To'liq Full-Stack Loyiha
+# HireLink — To'liq Full-Stack Loyiha
 
 MongoDB + Express + React (MERN) asosida qurilgan professional ish qidirish platformasi.
 
