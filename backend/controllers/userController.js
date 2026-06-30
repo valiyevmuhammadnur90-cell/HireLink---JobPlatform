@@ -1,11 +1,11 @@
-const User = require('../models/User');
+const User = require("../models/User");
 
 // @desc    O'z profilini ko'rish
 // @route   GET /api/users/profile
 // @access  Private
 const getProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id).populate('savedJobs');
+    const user = await User.findById(req.user._id).populate("savedJobs");
     res.json(user);
   } catch (error) {
     next(error);
@@ -18,9 +18,10 @@ const getProfile = async (req, res, next) => {
 const updateProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
-    if (!user) return res.status(404).json({ message: 'Foydalanuvchi topilmadi' });
+    if (!user)
+      return res.status(404).json({ message: "Foydalanuvchi topilmadi" });
 
-    const fields = ['name', 'phone', 'location', 'bio', 'skills'];
+    const fields = ["name", "phone", "location", "bio", "skills"];
     fields.forEach((field) => {
       if (req.body[field] !== undefined) user[field] = req.body[field];
     });
@@ -57,13 +58,16 @@ const updateProfile = async (req, res, next) => {
 // @access  Private
 const uploadResume = async (req, res, next) => {
   try {
-    if (!req.file) return res.status(400).json({ message: 'Fayl yuklanmadi' });
+    if (!req.file) return res.status(400).json({ message: "Fayl yuklanmadi" });
 
     const user = await User.findById(req.user._id);
     user.resume = `/uploads/${req.file.filename}`;
     await user.save();
 
-    res.json({ message: 'Rezyume muvaffaqiyatli yuklandi', resume: user.resume });
+    res.json({
+      message: "Rezyume muvaffaqiyatli yuklandi",
+      resume: user.resume,
+    });
   } catch (error) {
     next(error);
   }
@@ -87,7 +91,12 @@ const toggleSavedJob = async (req, res, next) => {
       saved = true;
     }
     await user.save();
-    res.json({ message: saved ? 'Vakansiya saqlandi' : 'Vakansiya saqlanganlardan olib tashlandi', saved });
+    res.json({
+      message: saved
+        ? "Vakansiya saqlandi"
+        : "Vakansiya saqlanganlardan olib tashlandi",
+      saved,
+    });
   } catch (error) {
     next(error);
   }
@@ -99,8 +108,8 @@ const toggleSavedJob = async (req, res, next) => {
 const getSavedJobs = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).populate({
-      path: 'savedJobs',
-      populate: { path: 'postedBy', select: 'name company' },
+      path: "savedJobs",
+      populate: { path: "postedBy", select: "name company" },
     });
     res.json(user.savedJobs);
   } catch (error) {
@@ -108,4 +117,10 @@ const getSavedJobs = async (req, res, next) => {
   }
 };
 
-module.exports = { getProfile, updateProfile, uploadResume, toggleSavedJob, getSavedJobs };
+module.exports = {
+  getProfile,
+  updateProfile,
+  uploadResume,
+  toggleSavedJob,
+  getSavedJobs,
+};

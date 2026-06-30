@@ -9,20 +9,6 @@ export default function Navbar() {
   const [unread, setUnread] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // useEffect(() => {
-  //   if (!user) return;
-  //   const check = async () => {
-  //     try {
-  //       const { data } = await api.get("/messages");
-  //       const total = data.reduce((sum, c) => sum + (c.unread || 0), 0);
-  //       setUnread(total);
-  //     } catch (_) {}
-  //   };
-  //   check();
-  //   const t = setInterval(check, 10000);
-  //   return () => clearInterval(t);
-  // }, [user]);
-
   const handleLogout = () => {
     logout();
     navigate("/");
