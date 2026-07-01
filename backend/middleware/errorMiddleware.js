@@ -3,30 +3,15 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
+  console.error('XATOLIK:', err);
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   let message = err.message;
 
-  // Mongoose noto'g'ri ObjectId
-  if (err.name === 'CastError') {
-    statusCode = 404;
-    message = 'Resurs topilmadi';
-  }
-  // Mongoose validatsiya xatosi
-  if (err.name === 'ValidationError') {
-    statusCode = 400;
-    message = Object.values(err.errors).map((val) => val.message).join(', ');
-  }
-  // Takrorlanuvchi kalit (unique)
-  if (err.code === 11000) {
-    statusCode = 400;
-    const field = Object.keys(err.keyValue)[0];
-    message = `Bu ${field} allaqachon ro'yxatdan o'tgan`;
-  }
+  if (err.name === 'CastError') { statusCode = 404; message = 'Resurs topilmadi'; }
+  if (err.name === 'ValidationError') { statusCode = 400; message = Object.values(err.errors).map((v) => v.message).join(', '); }
+  if (err.code === 11000) { statusCode = 400; message = `Bu ${Object.keys(err.keyValue)[0]} allaqachon ro'yxatdan o'tgan`; }
 
-  res.status(statusCode).json({
-    message,
-    stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,
-  });
+  res.status(statusCode).json({ message, stack: process.env.NODE_ENV === 'production' ? undefined : err.stack });
 };
 
 module.exports = { notFound, errorHandler };
