@@ -6,6 +6,7 @@ import api from "../api/axios";
 function useReveal() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => {
