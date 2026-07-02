@@ -3,9 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const uploadDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
@@ -16,19 +14,11 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = /pdf|doc|docx|jpg|jpeg|png/;
-  const extValid = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-  if (extValid) {
-    cb(null, true);
-  } else {
-    cb(new Error('Faqat PDF, DOC, DOCX, JPG, PNG fayllarga ruxsat berilgan'));
-  }
+  const allowed = /pdf|doc|docx|jpg|jpeg|png/;
+  if (allowed.test(path.extname(file.originalname).toLowerCase())) cb(null, true);
+  else cb(new Error('Faqat PDF, DOC, DOCX, JPG, PNG fayllarga ruxsat'));
 };
 
-const upload = multer({
-  storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
-  fileFilter,
-});
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 }, fileFilter });
 
 module.exports = upload;

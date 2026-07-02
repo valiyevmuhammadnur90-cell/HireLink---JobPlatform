@@ -1,22 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { protect, authorize } = require('../middleware/authMiddleware');
-const {
-  getAllUsers,
-  toggleUserStatus,
-  deleteUser,
-  getAllJobsAdmin,
-  toggleJobStatus,
-  getStatistics,
-} = require('../controllers/adminController');
-
+const { getAllUsers, toggleUserStatus, deleteUser, getAllJobsAdmin, toggleJobStatus, getStatistics } = require('../controllers/adminController');
 router.use(protect, authorize('admin'));
-
 router.get('/users', getAllUsers);
 router.put('/users/:id/toggle-status', toggleUserStatus);
 router.delete('/users/:id', deleteUser);
 router.get('/jobs', getAllJobsAdmin);
 router.put('/jobs/:id/toggle-status', toggleJobStatus);
 router.get('/stats', getStatistics);
-
 module.exports = router;
